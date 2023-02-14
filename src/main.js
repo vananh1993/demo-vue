@@ -8,6 +8,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import { BootstrapVue } from 'bootstrap-vue'
 
 library.add(fas, far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

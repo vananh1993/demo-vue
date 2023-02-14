@@ -2,13 +2,15 @@
   <div id="app">
     <nav>
       <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link>
+      <router-link to="/register">Register</router-link> | 
+
+      <router-link to="/listProducts">List</router-link>
     </nav>
     <router-view />
     <div class="">
-        <app-counter />
-        <app-result />
-        <app-todo />
+        <!-- <app-counter />
+        <app-result /> -->
+        <!-- <Todo /> -->
     </div>
   </div>
 </template>
@@ -53,7 +55,7 @@ nav {
     a {
         font-weight: bold;
         color: #2c3e50;
-
+        padding: 0px 20px;
         &.router-link-exact-active {
             color: #6ab4e4;
         }
