@@ -14,39 +14,36 @@ export default new Vuex.Store({
 			{ id: 4, title: 'To do 4', done: true }
       ],
       cart: JSON.parse(localStorage.getItem('storageCart')) || [],
-      listproducts: [
+      products: [
           {
               id: 1,
               title: 'T-shirt 1',
               imgUrl: '1.webp',
-              price": 980
+              price: 980
           },
           {
               id: 2,
               title: 'T-shirt',
               imgUrl: '1.webp',
-              price": 980
+              price: 980
           },
           {
               id: 3,
               title: 'T-shirt',
               imgUrl: '1.webp',
-              price": 980
+              price: 980
           },
           {
               id: 4,
               title: 'T-shirt',
               imgUrl: '1.webp',
-              price": 980
+              price: 980
           }
       ]
   },
   getters: {
       products: state => state.products,
       cart: state => state.cart
-      doneTodo: state => {
-          return state.todolist.filter(todo => todolist.done)
-      }
   },
   mutations: {
       incre(state, payload) {
@@ -58,6 +55,15 @@ export default new Vuex.Store({
               text: newText,
               done: false
           })
+      },
+      getProduct(state) {
+          state.products = products;
+      },
+      addCart(state, item) {
+
+      },
+      saveCart(state, item) {
+
       }
   },
   actions: {
