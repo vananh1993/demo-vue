@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import { BootstrapVue } from 'bootstrap-vue'
-
+import 'bootstrap/dist/css/bootstrap.css'
 library.add(fas, far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

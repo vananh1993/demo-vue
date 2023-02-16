@@ -1,10 +1,10 @@
 <template lang="html">
     <div class="container">
-        <div v-for="product in listproducts" :key="product['@id']" class="list-products">
-            <div class="col-sm-3 ">
-                <h4>{{ product.name }}</h4>
-                <p> {{ product.image }} </p>
-                <p> <img :src="{{ product.image }}" alt=""> </p>
+        <div class="row ">
+            <div v-for="product in listproducts" :key="product['@id']" class="list-products col-sm-3">
+                <h4>{{ product.title }}</h4>
+                <!-- <p> {{ product.image }} </p> -->
+                <p> <img v-bind:src="'images/' + product.imgUrl" alt=""> </p>
                 <p>
                     <button class="primary" type="button" name="button">Cart</button>
                 </p>
@@ -26,5 +26,8 @@ export default {
 <style lang="scss" scoped>
     .list-products {
         position: relative;
+        img {
+            max-width: 300px;
+        }
     }
 </style>

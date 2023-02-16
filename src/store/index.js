@@ -13,50 +13,37 @@ export default new Vuex.Store({
 			{ id: 3, title: 'To do 3', done: false },
 			{ id: 4, title: 'To do 4', done: true }
       ],
+      cart: JSON.parse(localStorage.getItem('storageCart')) || [],
       listproducts: [
           {
               id: 1,
-              name: 'T-shirt 1',
-              image: "1.webp",
-              img : {
-                "type": "image",
-                "source": "1.webp"
-              },
-              cart: false
+              title: 'T-shirt 1',
+              imgUrl: '1.webp',
+              price": 980
           },
           {
               id: 2,
-              name: 'T-shirt',
-              image: "1.webp",
-              img : {
-                "type": "image",
-                "source": "1.webp"
-              },
-              cart: false
+              title: 'T-shirt',
+              imgUrl: '1.webp',
+              price": 980
           },
           {
               id: 3,
-              name: 'T-shirt',
-              image: "1.webp",
-              img : {
-                "type": "image",
-                "source": "1.webp"
-              },
-              cart: false
+              title: 'T-shirt',
+              imgUrl: '1.webp',
+              price": 980
           },
           {
               id: 4,
-              name: 'T-shirt',
-              image: "1.webp",
-              img : {
-                "type": "image",
-                "source": "1.webp"
-              },
-              cart: false
+              title: 'T-shirt',
+              imgUrl: '1.webp',
+              price": 980
           }
       ]
   },
   getters: {
+      products: state => state.products,
+      cart: state => state.cart
       doneTodo: state => {
           return state.todolist.filter(todo => todolist.done)
       }

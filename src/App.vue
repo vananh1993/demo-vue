@@ -2,7 +2,7 @@
   <div id="app">
     <nav>
       <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link> | 
+      <router-link to="/register">Register</router-link> |
 
       <router-link to="/listProducts">List</router-link>
     </nav>
@@ -39,15 +39,24 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    height: 100vh;
+    // height: 100vh;
+    align-content: flex-start;
     flex-direction: column;
     margin: 0;
     padding: 0;
+    padding-top: 50px;
+
+}
+.container {
+    width: 100%;
 }
 div {
     width: 100%;
     padding: 0;
     margin: 0;
+}
+img {
+    max-width: 100%;
 }
 nav {
   // padding: 30px;
