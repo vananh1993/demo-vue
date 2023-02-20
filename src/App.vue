@@ -11,7 +11,7 @@
         <span>Cart </span>
 
     </div> -->
-    <Header/>
+    <Header />
     <router-view />
     <div class="">
         <!-- <app-counter />
@@ -25,16 +25,22 @@
     // import AppCounter from './components/Counter';
     // import AppResult from './components/Result';
     // import Todo from './components/Todo';
-    import Header from './views/header';
-    import { mapGetters } from 'vuex';
+    import Header from './components/header';
 
+
+
+    // import { mapGetters } from 'vuex';
+    //
     export default {
-        computed: {
-            ...mapGetters(['cart']),
-            totalCartItem() {
-              return this.cart.reduce((acc, item) => acc + item.qty, 0);
-            }
+        components: {
+            Header
         }
+    //     computed: {
+    //         ...mapGetters(['cart']),
+    //         totalCartItem() {
+    //           return this.cart.reduce((acc, item) => acc + item.qty, 0);
+    //         }
+    //     }
     }
 </script>
 

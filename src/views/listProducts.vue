@@ -23,7 +23,7 @@ export default {
         ...mapActions(["getProducts", "addToCart", "saveCart"])
     },
     mounted() {
-        this.getProducts();
+        // this.getProducts();
     }
 }
 </script>
