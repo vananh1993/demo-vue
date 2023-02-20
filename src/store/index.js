@@ -18,25 +18,25 @@ export default new Vuex.Store({
           {
               id: 1,
               title: 'T-shirt 1',
-              imgUrl: '1.webp',
+              imgUrl: '1.png',
               price: 980
           },
           {
               id: 2,
               title: 'T-shirt',
-              imgUrl: '1.webp',
+              imgUrl: '2.png',
               price: 980
           },
           {
               id: 3,
               title: 'T-shirt',
-              imgUrl: '1.webp',
+              imgUrl: '3.png',
               price: 980
           },
           {
               id: 4,
               title: 'T-shirt',
-              imgUrl: '1.webp',
+              imgUrl: '4.png',
               price: 980
           }
       ]

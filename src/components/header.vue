@@ -9,10 +9,18 @@
 
             </nav>
             <div class="col-sm-3">
-                <p class="text-right cart-total"><b> Cart: ({{ totalCartItem }})</b></p>
-                <div class="cart-drawer">
-                    <div v-for="item in cart" class="cart-drawer__item">
-                        <p>{{ item.title }}</p>
+                <div class="text-right cart-total">
+                    <b> Cart: ({{ totalCartItem }})</b>
+
+                    <div class="cart-drawer">
+                        <div v-for="item in cart" class="cart-drawer__item">
+                            <p>
+                                <img <img width="40" v-bind:src="'images/' + item.imgUrl" alt="">
+                                {{ item.title }}
+                                {{ item.qty }}
+                                <!-- <input width="50" type="text" name="" value="{{ item.qty }}"> -->
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,13 +47,16 @@ export default {
         width: 100%;
 
     }
+    p {
+        margin: 0;
+    }
     .col-sm-3 {
         position: relative;
     }
     .cart-total {
         cursor: pointer;
         &:hover {
-            & + .cart-drawer {
+            .cart-drawer {
                 display: block;
             }
         }
@@ -60,5 +71,19 @@ export default {
         height: auto;
         font-size: 14px;
         z-index: 10;
+        &__item {
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 7px;
+                padding-bottom: 7px;
+                border-bottom: 1px solid #d6d6d6;
+            }
+        }
+        input {
+            width: 40px;
+        }
     }
 </style>
