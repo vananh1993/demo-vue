@@ -56,18 +56,33 @@ export default new Vuex.Store({
               done: false
           })
       },
-      getProduct(state) {
+      getProductData(state) {
           state.products = products;
       },
-      addCart(state, item) {
-
+      AddItemToCart(state, item) {
+          const addedItem = state.cart.find(product => product.id === item.id);
+          if (addedItem) {
+            addedItem.qty++;
+          } else {
+            state.cart.push({...item, qty: 1});
+          }
+          // console.log(state.cart);
       },
-      saveCart(state, item) {
-
+      saveItemCart(state, item) {
+          commit('saveCart');
       }
   },
   actions: {
-
+      addToCart({ commit }, item) {
+          commit("AddItemToCart", item)
+      },
+      saveCart({ state }) {
+          localStorage.setItem('storageCart', JSON.stringify(state.cart))
+          // console.log(storageCart);
+      },
+      getProducts({ commit }) {
+        commit('getProductData');
+      },
   },
   modules: {
   }

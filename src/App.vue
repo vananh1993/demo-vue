@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav class="col-sm-9">
       <router-link to="/login">Login</router-link> |
       <router-link to="/register">Register</router-link> |
 
       <router-link to="/listProducts">List</router-link>
+      <span> Cart: ({{ totalCartItem }})</span>
     </nav>
+    <div class="col-sm-3">
+        <span>Cart </span>
+
+    </div> -->
+    <Header/>
     <router-view />
     <div class="">
         <!-- <app-counter />
@@ -16,14 +22,18 @@
 </template>
 
 <script>
-    import AppCounter from './components/Counter';
-    import AppResult from './components/Result';
-    import Todo from './components/Todo';
+    // import AppCounter from './components/Counter';
+    // import AppResult from './components/Result';
+    // import Todo from './components/Todo';
+    import Header from './views/header';
+    import { mapGetters } from 'vuex';
+
     export default {
-        components: {
-            Todo,
-            AppCounter,
-            AppResult
+        computed: {
+            ...mapGetters(['cart']),
+            totalCartItem() {
+              return this.cart.reduce((acc, item) => acc + item.qty, 0);
+            }
         }
     }
 </script>

@@ -4,7 +4,7 @@
             <div v-for="product in products" :key="product['@id']" class="list-products col-sm-3">
                 <h4>{{ product.title }}</h4>
                 <!-- <p> {{ product.image }} </p> -->
-                <p> <img v-bind:src="'images/' + product.imgUrl" alt=""> </p>
+                <!-- <p> <img v-bind:src="'images/' + product.imgUrl" alt=""> </p> -->
                 <p>
                     <button class="primary" type="button" name="button" @click.prevent="addToCart(product), saveCart(product.id)">Cart</button>
                 </p>
@@ -20,7 +20,7 @@ export default {
         ...mapGetters(["products"])
     },
     methods: {
-        ...mapActions(["getProducts", "addCart", "saveCart"])
+        ...mapActions(["getProducts", "addToCart", "saveCart"])
     },
     mounted() {
         this.getProducts();
