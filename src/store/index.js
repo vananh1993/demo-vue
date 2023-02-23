@@ -18,28 +18,28 @@ export default new Vuex.Store({
           {
               id: 1,
               title: 'T-shirt 1',
-              imgUrl: '1.png',
+              imgUrl: '150x150.png',
               price: 980000,
               salePrice: 500000
           },
           {
               id: 2,
               title: 'T-shirt',
-              imgUrl: '2.png',
+              imgUrl: '150x150.png',
               price: 980000,
               salePrice: 700000
           },
           {
               id: 3,
               title: 'T-shirt',
-              imgUrl: '3.png',
+              imgUrl: '150x150.png',
               price: 300000,
               salePrice: 250000
           },
           {
               id: 4,
               title: 'T-shirt',
-              imgUrl: '4.png',
+              imgUrl: '150x150.png',
               price: 500000,
               salePrice: 300000
           }
@@ -74,6 +74,18 @@ export default new Vuex.Store({
       },
       saveItemCart(state, item) {
           commit('saveCart');
+      },
+      increCart(state, id) {
+          const currentItem = state.cart.find(product => product.id === item.id);
+          currentItem.qty++;
+      },
+      decreCart(state, id) {
+          const currentItem = state.cart.find(product => product.id === item.id);
+          if (item > 1) {
+               currentItem.qty--;
+          } else {
+              state.cart.filter(el => el.id !== item.id)
+          }
       }
   },
   actions: {

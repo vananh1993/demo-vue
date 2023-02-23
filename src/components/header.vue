@@ -10,14 +10,14 @@
             </nav>
             <div class="col-sm-3">
                 <div class="text-right cart-total">
-                    <b> Cart: ({{ totalCartItem }})</b>
+                    <router-link to="/cart">Cart: ({{ totalCartItem }})</router-link>
 
                     <div class="cart-drawer">
                         <div v-for="item in cart" class="cart-drawer__item">
                             <p>
                                 <img <img width="40" v-bind:src="'images/' + item.imgUrl" alt="">
-                                {{ item.title }}
-                                {{ item.qty }}
+                                <span>{{ item.title }}</span>
+                                <span>{{ item.qty }}</span>
                                 <!-- <input width="50" type="text" name="" value="{{ item.qty }}"> -->
                             </p>
                         </div>
@@ -71,7 +71,16 @@ export default {
         height: auto;
         font-size: 14px;
         z-index: 10;
+        border: 1px solid #d6d6d6;
+        padding: 5px 7px;
         &__item {
+            &:last-child {
+                p {
+                    border-bottom: 0px;
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+            }
             p {
                 display: flex;
                 align-items: center;
@@ -80,6 +89,7 @@ export default {
                 margin-bottom: 7px;
                 padding-bottom: 7px;
                 border-bottom: 1px solid #d6d6d6;
+
             }
         }
         input {
