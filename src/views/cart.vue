@@ -3,7 +3,7 @@
       <h1>Cart</h1>
       <div class="row justify-content-center">
          <div class="cart col-sm-9 " >
-             <div v-for="item in cart" class="cart-item">
+             <div v-for="item in cart" class="cart-item"  :key="item['@id']">
                  <div class="d-flex">
                      <div class="cart-img">
                         <img width="70" v-bind:src="'images/' + item.imgUrl" alt="">
@@ -13,11 +13,11 @@
                         <b>{{ item.id }}</b>
                      </div>
                      <div class="cart-quantity d-flex">
-                        <button class="cart-quantity__subtr" @click="increCart(item.id), saveCart(item.id)">
+                        <button class="cart-quantity__subtr" @click="decreCart(item.id), saveCart(item.id)">
                             -
                         </button> &nbsp;
                         <input class="cart-quantity__input" type="text" v-model="item.qty"/> &nbsp;
-                        <button class="cart-quantity__plus" @click="decreCart(item.id), saveCart(item.id)">
+                        <button class="cart-quantity__plus" @click="increCart(item.id), saveCart(item.id)">
                             +
                         </button>
                     </div>

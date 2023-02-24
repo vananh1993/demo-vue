@@ -78,11 +78,12 @@ export default new Vuex.Store({
       increCart(state, id) {
           console.log(id);
           const currentItem = state.cart.find(product => product.id === id);
-          // currentItem.qty++;
+          currentItem.qty++;
       },
       decreCart(state, id) {
+          console.log(id);
           const currentItem = state.cart.find(product => product.id === id);
-          if (item > 1) {
+          if (currentItem.qty > 1) {
                currentItem.qty--;
           } else {
               state.cart = state.cart.filter(el => el.id !== id)
@@ -94,7 +95,6 @@ export default new Vuex.Store({
           commit("AddItemToCart", item)
       },
       saveCart({ state }) {
-
           localStorage.setItem('storageCart', JSON.stringify(state.cart))
           // console.log(storageCart);
       },
@@ -103,11 +103,11 @@ export default new Vuex.Store({
       },
       increCart({ commit }, id) {
           console.log(id);
-          commit('increCart', id);
+          commit("increCart", id);
 
       },
       decreCart({ commit }, id) {
-          commit('decreCart', id);
+          commit("decreCart", id);
       }
   },
   modules: {
