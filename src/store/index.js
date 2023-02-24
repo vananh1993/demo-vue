@@ -17,28 +17,28 @@ export default new Vuex.Store({
       products: [
           {
               id: 1,
-              title: 'T-shirt 1',
+              title: 'T-shirt 1 ',
               imgUrl: '150x150.png',
               price: 980000,
               salePrice: 500000
           },
           {
               id: 2,
-              title: 'T-shirt',
+              title: 'T-shirt 2 ',
               imgUrl: '150x150.png',
               price: 980000,
               salePrice: 700000
           },
           {
               id: 3,
-              title: 'T-shirt',
+              title: 'T-shirt 3 ',
               imgUrl: '150x150.png',
               price: 300000,
               salePrice: 250000
           },
           {
               id: 4,
-              title: 'T-shirt',
+              title: 'T-shirt 1 ',
               imgUrl: '150x150.png',
               price: 500000,
               salePrice: 300000
@@ -76,15 +76,16 @@ export default new Vuex.Store({
           commit('saveCart');
       },
       increCart(state, id) {
-          const currentItem = state.cart.find(product => product.id === item.id);
-          currentItem.qty++;
+          console.log(id);
+          const currentItem = state.cart.find(product => product.id === id);
+          // currentItem.qty++;
       },
       decreCart(state, id) {
-          const currentItem = state.cart.find(product => product.id === item.id);
+          const currentItem = state.cart.find(product => product.id === id);
           if (item > 1) {
                currentItem.qty--;
           } else {
-              state.cart.filter(el => el.id !== item.id)
+              state.cart = state.cart.filter(el => el.id !== id)
           }
       }
   },
@@ -93,12 +94,21 @@ export default new Vuex.Store({
           commit("AddItemToCart", item)
       },
       saveCart({ state }) {
+
           localStorage.setItem('storageCart', JSON.stringify(state.cart))
           // console.log(storageCart);
       },
       getProducts({ commit }) {
         commit('getProductData');
       },
+      increCart({ commit }, id) {
+          console.log(id);
+          commit('increCart', id);
+
+      },
+      decreCart({ commit }, id) {
+          commit('decreCart', id);
+      }
   },
   modules: {
   }

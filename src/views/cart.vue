@@ -10,13 +10,14 @@
                      </div>
                      <div class="cart-title">
                         <b>{{ item.title }}</b>
+                        <b>{{ item.id }}</b>
                      </div>
                      <div class="cart-quantity d-flex">
-                        <button class="cart-quantity__subtr">
+                        <button class="cart-quantity__subtr" @click="increCart(item.id), saveCart(item.id)">
                             -
                         </button> &nbsp;
                         <input class="cart-quantity__input" type="text" v-model="item.qty"/> &nbsp;
-                        <button class="cart-quantity__plus">
+                        <button class="cart-quantity__plus" @click="decreCart(item.id), saveCart(item.id)">
                             +
                         </button>
                     </div>
@@ -46,17 +47,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
     computed: {
         ...mapGetters(['cart']),
         totalCartItem() {
-          return this.cart.reduce((acc, item) => acc + item.qty, 0);
-      },
-      totalItemPrice () {
-          return this.cart.reduce((acc, item) => acc + item.salePrice*item.qty  , 0);
-      },
-      // getTotal()
+            return this.cart.reduce((acc, item) => acc + item.qty, 0);
+        },
+        totalItemPrice () {
+            return this.cart.reduce((acc, item) => acc + item.salePrice*item.qty  , 0);
+        },
+    },
+    methods: {
+        ...mapActions(["increCart", "decreCart", "saveCart"])
+    },
+    mounted() {
+        // this.getProducts();
     }
 }
 </script>
@@ -76,6 +82,9 @@ export default {
         margin-bottom: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid #d6d6d6;
+    }
+    .text-right {
+        text-align: right;
     }
     .cart-quantity {
         &__input {
