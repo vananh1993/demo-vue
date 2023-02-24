@@ -76,18 +76,22 @@ export default new Vuex.Store({
           commit('saveCart');
       },
       increCart(state, id) {
-          console.log(id);
+          // console.log(id);
           const currentItem = state.cart.find(product => product.id === id);
           currentItem.qty++;
       },
       decreCart(state, id) {
-          console.log(id);
+          // console.log(id);
           const currentItem = state.cart.find(product => product.id === id);
           if (currentItem.qty > 1) {
                currentItem.qty--;
           } else {
               state.cart = state.cart.filter(el => el.id !== id)
           }
+      },
+      deleteCart(state, id) {
+          const currentItem = state.cart.find(product => product.id === id);
+          state.cart = state.cart.filter(el => el.id !== id)
       }
   },
   actions: {
@@ -108,6 +112,9 @@ export default new Vuex.Store({
       },
       decreCart({ commit }, id) {
           commit("decreCart", id);
+      },
+      deleteCart({ commit }, id) {
+          commit("deleteCart", id);
       }
   },
   modules: {

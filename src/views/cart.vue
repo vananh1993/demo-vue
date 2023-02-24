@@ -31,7 +31,7 @@
                         </p>
                     </div>
                     <div class="">
-                        <button type="button" name="button">
+                        <button type="button" name="button" @click="deleteCart(item.id), saveCart(item.id) ">
                             <img src="images/delete-icon.png" alt="">
                         </button>
                     </div>
@@ -59,7 +59,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions(["increCart", "decreCart", "saveCart"])
+        ...mapActions(["increCart", "decreCart","deleteCart", "saveCart"])
     },
     mounted() {
         // this.getProducts();
