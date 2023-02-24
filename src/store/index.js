@@ -89,6 +89,22 @@ export default new Vuex.Store({
               state.cart = state.cart.filter(el => el.id !== id)
           }
       },
+      decreCart2(state, id) {
+          console.log(id);
+          const currentItem = state.cart.find(product => product.id === id);
+          if (currentItem.qty > 1) {
+               currentItem.qty--;
+          } else {
+              state.cart = state.cart.filter(el => el.id !== id)
+          }
+      },
+
+      decreCart(state, id) {
+        const affectItem = state.cart.find(product => product.id === id);
+
+        affectItem.qty = Math.max(0, affectItem.qty - 1);
+        state.cart = state.cart.filter((item) => item.qty > 0);
+      },
       deleteCart(state, id) {
           const currentItem = state.cart.find(product => product.id === id);
           state.cart = state.cart.filter(el => el.id !== id)
