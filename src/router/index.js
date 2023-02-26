@@ -1,8 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Login from '../views/Login.vue'
-import listProducts from '../views/listProducts.vue'
-import cart from '../views/cart.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Login from '../views/Login.vue';
+import listProducts from '../views/listProducts.vue';
 
 Vue.use(VueRouter)
 
@@ -25,7 +24,12 @@ const routes = [
   {
     path: '/cart',
     name: 'cart',
-    component: cart
+    component: () => import(/* webpackChunkName: "cart" */ '../views/cart.vue')
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: () => import(/* webpackChunkName: "cart" */ '../views/Checkout.vue')
   }
 ]
 

@@ -14,6 +14,7 @@ export default new Vuex.Store({
 			{ id: 4, title: 'To do 4', done: true }
       ],
       cart: JSON.parse(localStorage.getItem('storageCart')) || [],
+      checkoutAdresses: JSON.parse(localStorage.getItem('checkoutAdresses')) || [],
       products: [
           {
               id: 1,
