@@ -117,37 +117,36 @@ export default new Vuex.Store({
       },
   },
   actions: {
-      addToCart({ commit }, item) {
+        addToCart({ commit }, item) {
           commit("AddItemToCart", item)
-      },
-      saveCart({ state }) {
+        },
+        saveCart({ state }) {
           localStorage.setItem('storageCart', JSON.stringify(state.cart))
           // console.log(storageCart);
-      },
-      getProducts({ commit }) {
+        },
+        getProducts({ commit }) {
         commit('getProductData');
-      },
-      increCart({ commit }, id) {
-          console.log(id);
+        },
+        increCart({ commit }, id) {
+          // console.log(id);
           commit("increCart", id);
 
-      },
-      decreCart({ commit }, id) {
+        },
+        decreCart({ commit }, id) {
           commit("decreCart", id);
-      },
-      deleteCart({ commit }, id) {
+        },
+        deleteCart({ commit }, id) {
           commit("deleteCart", id);
-      },
-      async fetchUsers({ commit }) {
-      try {
-        const data = await axios.get(
-          "https://jsonplaceholder.typicode.com/users"
+        },
+        async fetchUsers({ commit }) {
+        try {
+            const data = await axios.get(
+            "https://jsonplaceholder.typicode.com/users"
         );
         commit("SET_USERS", data.data);
-      } catch (error) {
-        alert(error);
-        console.log(error);
-      }
+        } catch (error) {
+            console.log(error);
+        }
     },
   },
   modules: {
