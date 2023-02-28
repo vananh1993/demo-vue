@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+import axios from "axios";
 
 export default new Vuex.Store({
   state: {
@@ -139,16 +140,16 @@ export default new Vuex.Store({
           commit("deleteCart", id);
         },
         async fetchUsers({ commit }) {
-        try {
-            const data = await axios.get(
-            "https://jsonplaceholder.typicode.com/users"
-        );
-        commit("SET_USERS", data.data);
-        } catch (error) {
-            console.log(error);
-        }
+            try {
+                const data = await axios.get(
+                "https://jsonplaceholder.typicode.com/users"
+            );
+            commit("SET_USERS", data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        },
     },
-  },
   modules: {
   }
 })
