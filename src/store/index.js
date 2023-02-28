@@ -44,11 +44,13 @@ export default new Vuex.Store({
               price: 500000,
               salePrice: 300000
           }
-      ]
+      ],
+      users: [],
   },
   getters: {
       products: state => state.products,
-      cart: state => state.cart
+      cart: state => state.cart,
+      getUsers: state => state.users,
   },
   mutations: {
       incre(state, payload) {
@@ -91,7 +93,7 @@ export default new Vuex.Store({
           }
       },
       decreCart2(state, id) {
-          console.log(id);
+          // console.log(id);
           const currentItem = state.cart.find(product => product.id === id);
           if (currentItem.qty > 1) {
                currentItem.qty--;
@@ -109,7 +111,10 @@ export default new Vuex.Store({
       deleteCart(state, id) {
           const currentItem = state.cart.find(product => product.id === id);
           state.cart = state.cart.filter(el => el.id !== id)
-      }
+      },
+      SET_USERS(state, users) {
+          state.users = users;
+      },
   },
   actions: {
       addToCart({ commit }, item) {
@@ -132,7 +137,18 @@ export default new Vuex.Store({
       },
       deleteCart({ commit }, id) {
           commit("deleteCart", id);
+      },
+      async fetchUsers({ commit }) {
+      try {
+        const data = await axios.get(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        commit("SET_USERS", data.data);
+      } catch (error) {
+        alert(error);
+        console.log(error);
       }
+    },
   },
   modules: {
   }
