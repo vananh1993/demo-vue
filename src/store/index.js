@@ -16,42 +16,14 @@ export default new Vuex.Store({
       ],
       cart: JSON.parse(localStorage.getItem('storageCart')) || [],
       checkoutAdresses: JSON.parse(localStorage.getItem('checkoutAdresses')) || [],
-      products: [
-          {
-              id: 1,
-              title: 'T-shirt 1 ',
-              imgUrl: '150x150.png',
-              price: 980000,
-              salePrice: 500000
-          },
-          {
-              id: 2,
-              title: 'T-shirt 2 ',
-              imgUrl: '150x150.png',
-              price: 980000,
-              salePrice: 700000
-          },
-          {
-              id: 3,
-              title: 'T-shirt 3 ',
-              imgUrl: '150x150.png',
-              price: 300000,
-              salePrice: 250000
-          },
-          {
-              id: 4,
-              title: 'T-shirt 1 ',
-              imgUrl: '150x150.png',
-              price: 500000,
-              salePrice: 300000
-          }
-      ],
-      users: [],
+      // users: [],
+      users:[],
+      products:[]
   },
   getters: {
-      products: state => state.products,
+      // products: state => state.products,
       cart: state => state.cart,
-      getUsers: state => state.users,
+      // users: state => state.users,
   },
   mutations: {
       incre(state, payload) {
@@ -64,7 +36,7 @@ export default new Vuex.Store({
               done: false
           })
       },
-      getProductData(state) {
+      getProductData(state, products) {
           state.products = products;
       },
       AddItemToCart(state, item) {
@@ -116,6 +88,9 @@ export default new Vuex.Store({
       SET_USERS(state, users) {
           state.users = users;
       },
+      setUsers(state, users) {
+          state.users = users;
+      },
   },
   actions: {
         addToCart({ commit }, item) {
@@ -126,7 +101,7 @@ export default new Vuex.Store({
           // console.log(storageCart);
         },
         getProducts({ commit }) {
-        commit('getProductData');
+            commit('getProductData');
         },
         increCart({ commit }, id) {
           // console.log(id);
@@ -139,16 +114,34 @@ export default new Vuex.Store({
         deleteCart({ commit }, id) {
           commit("deleteCart", id);
         },
-        async fetchUsers({ commit }) {
-            try {
-                const data = await axios.get(
-                "https://jsonplaceholder.typicode.com/users"
-            );
-            commit("SET_USERS", data.data);
-            } catch (error) {
-                console.log(error);
-            }
+        loadUsers(context) {
+          axios.get("https://jsonplaceholder.typicode.com/users")
+          .then(res => {
+            context.commit('setUsers', res.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
         },
+        loadProducts(context) {
+          axios.get("/data/products.json")
+          .then(res => {
+            context.commit('getProductData', res.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        },
+        // async fetchUsers({ commit }) {
+        //     try {
+        //         const data = await axios.get(
+        //         "https://jsonplaceholder.typicode.com/users"
+        //     );
+        //     commit("SET_USERS", data.data);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // },
     },
   modules: {
   }

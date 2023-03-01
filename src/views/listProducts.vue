@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="container">
-        <div class="row ">
-            <div v-for="product in products" :key="product['@id']" class="list-products col-sm-3">
+        <div class="row list-products ">
+            <div v-for="product in products" :key="product['@id']" class="list-products__item col-sm-3">
                 <h4>{{ product.title }}</h4>
                 <!-- <p> {{ product.image }} </p> -->
                 <p> <img width="100" v-bind:src="'images/' + product.imgUrl" alt=""> </p>
@@ -14,13 +14,16 @@
 </template>
 
 <script>
-import {  mapActions, mapGetters } from 'vuex'
+import {  mapActions, mapGetters, mapState } from 'vuex'
 export default {
+    created() {
+      this.$store.dispatch("loadProducts");
+    },
     computed: {
-        ...mapGetters(["products"])
+        ...mapState(["products"]),
     },
     methods: {
-        ...mapActions(["getProducts", "addToCart", "saveCart"])
+        ...mapActions(["addToCart", "saveCart"])
     },
     mounted() {
         // this.getProducts();
@@ -33,6 +36,9 @@ export default {
         position: relative;
         img {
             // max-width: 300px;
+        }
+        &__item {
+            margin-bottom: 15px;
         }
     }
 </style>

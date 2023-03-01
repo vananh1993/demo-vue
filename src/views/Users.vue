@@ -1,21 +1,25 @@
 <template lang="html">
     <div class="">
-        <div v-for="user in getUsers" :key="user.id">
-      {{ user.id }} {{ user.name }} {{ user.address }}
-    </div>
+        <ul>
+           <li v-for="(user, idx) in users" :key="idx">
+             {{ user.name }}  in {{ user.address.city }}
+           </li>
+         </ul>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from "vuex";
+
 export default {
-    computed:{
-        ...mapGetters['getUsers']
-    },
-    mounted() {
-        // this.getProducts();
-    }
-}
+  created() {
+    this.$store.dispatch("loadUsers");
+  },
+
+  computed: {
+    ...mapState(["users"]),
+  },
+};
 </script>
 
 <style lang="css" scoped>
