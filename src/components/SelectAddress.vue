@@ -108,7 +108,7 @@ export default {
 
     const plugin = document.createElement("script");
     plugin.setAttribute(
-      'src', 'https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=places&key=AIzaSyCTLuP90TdO49ipIfv3S5hFPz4FwmZlh5A'
+      'src', `https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=places&key=${process.env.VUE_APP_GOOGLE_API_KEY}`
     );
     plugin.async = true;
     document.head.appendChild(plugin);
