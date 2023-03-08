@@ -1,8 +1,8 @@
 <template lang="html">
-    <div class="">
+    <div class="container">
         <ul>
            <li v-for="(user, idx) in users" :key="idx">
-             {{ user.name }}  in {{ user.address.city }}
+            Name:  {{ user.name }}
            </li>
          </ul>
     </div>
@@ -22,5 +22,9 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+    ul, li {
+        list-style: none;
+        text-align: left;
+    }
 </style>

@@ -6,7 +6,8 @@
                 <!-- <p> {{ product.image }} </p> -->
                 <p> <img width="100" v-bind:src="'images/' + product.imgUrl" alt=""> </p>
                 <p>
-                    <button class="primary" type="button" name="button" @click.prevent="addToCart(product), saveCart(product.id)">Cart</button>
+                    sbjfbdb
+                    <!-- <button class="primary" type="button" name="button" @click.prevent="addToCart(product), saveCart(product.id)">Cart</button> -->
                 </p>
             </div>
         </div>
@@ -17,7 +18,7 @@
 import {  mapActions, mapGetters, mapState } from 'vuex'
 export default {
     created() {
-      this.$store.dispatch("loadProducts");
+      this.$store.dispatch("products/loadProducts");
     },
     computed: {
         ...mapState(["products"]),

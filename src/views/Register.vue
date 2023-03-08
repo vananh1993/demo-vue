@@ -12,7 +12,7 @@
       <BaseInput
         v-model="lastName"
         type="text"
-        placeholder="Last Name"
+        placeholder="phone"
         required
         icon="user"
       />
@@ -31,7 +31,6 @@
         icon="lock"
       />
       <BaseButton
-        size="full"
         type="primary"
         label="Register"
         button-type="submit"

@@ -6,16 +6,17 @@
               <router-link to="/register">Register</router-link> |
 
               <router-link to="/listProducts">List</router-link>
+              <router-link to="/user">User</router-link>
 
             </nav>
             <div class="col-sm-3">
                 <div class="text-right cart-total">
-                    <router-link to="/cart">Cart: ({{ totalCartItem }})</router-link>
-
+                    <!-- <router-link to="/cart">Cart: ({{ totalCartItem }})</router-link> -->
+                    <span>Cart</span>
                     <div class="cart-drawer">
                         <div v-for="item in cart" class="cart-drawer__item">
                             <p>
-                                <img <img width="40" v-bind:src="'images/' + item.imgUrl" alt="">
+                                <!-- <img <img width="40" v-bind:src="'images/' + item.imgUrl" alt=""> -->
                                 <span>{{ item.title }}</span>
                                 <span>{{ item.qty }}</span>
                                 <!-- <input width="50" type="text" name="" value="{{ item.qty }}"> -->
@@ -29,16 +30,52 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters(['cart']),
-        totalCartItem() {
-          return this.cart.reduce((acc, item) => acc + item.qty, 0);
-        }
+        ...mapState(["cart"]),
+        // ...mapGetters(['cart/isCart']),
+        // totalCartItem() {
+        //   return this.cart.reduce((acc, item) => acc + item.qty, 0);
+        // }
     }
 }
+// import { mapGetters,  mapActions} from 'vuex'
+// export default {
+//     computed: {
+//           ...mapGetters({
+//             companies: 'cart/getCartData'
+//           })
+//     },
+//
+//     methods: {
+//       ...mapActions(['cart/getCartData');
+//     },
+//
+//     mounted() {
+//       this['cart/getCartData']();
+//     },
+// }
+// import { mapGetters, mapState } from 'vuex';
+//
+// export default {
+//     created() {
+//       // this.$store.dispatch("cart/getCartData");
+//     },
+//     computed: {
+//         ...mapGetters({
+//             cart: 'cart/getCartData'
+//         }),
+//         ...mapState(['cart']),
+//         // totalCartItem() {
+//         //   return this.cart.reduce((acc, item) => acc + item.qty, 0);
+//         // }
+//     },
+//     mounted () {
+//         this.$store.dispatch('cart/getCartData')
+//     }
+// }
 </script>
 
 <style lang="scss" scoped>
