@@ -11,7 +11,7 @@
             </nav>
             <div class="col-sm-3">
                 <div class="text-right cart-total">
-                    <!-- <router-link to="/cart">Cart: ({{ totalCartItem }})</router-link> -->
+                    <router-link to="/cart">Cart: ({{ 0 }})</router-link>
                     <span>Cart</span>
                     <div class="cart-drawer">
                         <div v-for="item in cart" class="cart-drawer__item">
@@ -34,7 +34,9 @@ import { mapState } from 'vuex';
 
 export default {
     computed: {
-        ...mapState(["cart"]),
+        ...mapState('cart', {
+            cart: (state) => state.cart
+        }),
         // ...mapGetters(['cart/isCart']),
         // totalCartItem() {
         //   return this.cart.reduce((acc, item) => acc + item.qty, 0);

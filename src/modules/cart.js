@@ -6,6 +6,7 @@ export default {
     },
     getters: {
         cart: state => state.cart,
+        totalItems: state => state.cart.reduce((acc, item) => acc + item.qty, 0),
         isCart () {
             return state.cart;
         }

@@ -6,8 +6,7 @@
                 <!-- <p> {{ product.image }} </p> -->
                 <p> <img width="100" v-bind:src="'images/' + product.imgUrl" alt=""> </p>
                 <p>
-                    sbjfbdb
-                    <!-- <button class="primary" type="button" name="button" @click.prevent="addToCart(product), saveCart(product.id)">Cart</button> -->
+                    <button class="primary" type="button" name="button" @click.prevent="addToCart(product), saveCart(product.id)">Cart</button>
                 </p>
             </div>
         </div>
@@ -21,10 +20,12 @@ export default {
       this.$store.dispatch("products/loadProducts");
     },
     computed: {
-        ...mapState(["products"]),
+        ...mapState('products', {
+            products: (state) => state.products
+        })
     },
     methods: {
-        ...mapActions(["addToCart", "saveCart"])
+        ...mapActions('cart', ["addToCart", "saveCart"])
     },
     mounted() {
         // this.getProducts();
