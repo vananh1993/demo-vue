@@ -11,6 +11,11 @@ const routes = [
       name: 'listProducts',
       component: listProducts
   },
+  {
+    path: '/wheel',
+    name: 'wheel',
+    component: () => import(/* webpackChunkName: "about" */ '../views/LuckyWheel.vue')
+  },
   // {
   //   path: '/login',
   //   name: 'login',

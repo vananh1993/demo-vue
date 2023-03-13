@@ -11,12 +11,12 @@
             </nav>
             <div class="col-sm-3">
                 <div class="text-right cart-total">
-                    <router-link to="/cart">Cart: ({{ 0 }})</router-link>
+                    <router-link to="/cart">Cart: ({{ totalCartItem }})</router-link>
                     <span>Cart</span>
                     <div class="cart-drawer">
                         <div v-for="item in cart" class="cart-drawer__item">
                             <p>
-                                <!-- <img <img width="40" v-bind:src="'images/' + item.imgUrl" alt=""> -->
+                                <img <img width="40" v-bind:src="'images/' + item.imgUrl" alt="">
                                 <span>{{ item.title }}</span>
                                 <span>{{ item.qty }}</span>
                                 <!-- <input width="50" type="text" name="" value="{{ item.qty }}"> -->
@@ -38,9 +38,9 @@ export default {
             cart: (state) => state.cart
         }),
         // ...mapGetters(['cart/isCart']),
-        // totalCartItem() {
-        //   return this.cart.reduce((acc, item) => acc + item.qty, 0);
-        // }
+        totalCartItem() {
+          return this.cart.reduce((acc, item) => acc + item.qty, 0);
+        }
     }
 }
 // import { mapGetters,  mapActions} from 'vuex'
