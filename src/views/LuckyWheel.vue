@@ -1,9 +1,9 @@
 <template lang="html">
     <div id="app">
         <div class="wheel__wrapper">
-          <div class="wheel__controller" @click="turning">
+          <button class="wheel__controller" @click="turning" :disabled='isShowResult'>
             <h6 class="controller__label">PRESS</h6>
-          </div>
+        </button>
           <div class="content__wrapper" ref="roulette" @transitionend="turningEnd">
             <div class="sector__wrapper">
               <div
@@ -20,7 +20,7 @@
                 :style="`transform: translateX(-50%) rotate(${-i*(1/length)}turn)`"
                 :class="awardIdx === i && isShowResult ? 'is-highlight' : ''"
               >
-                <i class="icon" :class="p.icon"></i>
+                <!-- <i class="icon" :class="p.icon"></i> -->
                 <h2 class="text">{{ p.text }}</h2>
               </div>
             </div>
@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="result-bg-dec__wrapper">
-              <i v-for="i in 8" class="result-bg-dec" :class="prizes[awardIdx].icon"></i>
+              <!-- <i v-for="i in 8" class="result-bg-dec" :class="prizes[awardIdx].icon"></i> -->
             </div>
           </div>
         </div>
@@ -45,8 +45,8 @@
 
 import axios from 'axios';
 
-const result = 'Award';
-
+// const result = 'Award';
+// const isDisabled = true;
 export default {
   // el: '#app',
   computed: {
@@ -77,7 +77,7 @@ export default {
       return this.targetIndex * this.stepDegrees;
     },
     wheelDegrees() {
-      return this.targetDegrees + Math.ceil((Math.random() + 1) * 4) * 360;
+      return this.targetDegrees + Math.ceil((Math.random() + 3) * 4) * 360;
     }
   },
   data() {
@@ -102,11 +102,14 @@ export default {
   },
   async created() {
     const {data} = await axios.get('data/wheel.json');
+    const resultData = await axios.get('data/resultWhell.json').then(response => (this.resultText = response.data.result))
     this.prizes = data;
-    this.resultText = data.filter((i) => i.isResult)[0].text;
+    // this.resultText = resultData;
+    // console.log(this.resultText);
+    // this.resultText = data.filter((i) => i.isResult)[0].text;
   },
   mounted() {
-    
+
   }
 }
 </script>
@@ -125,6 +128,7 @@ export default {
   justify-content: center;
   background-color: #5858b9;
   overflow: hidden;
+  position: relative;
 }
 
 * {
@@ -141,7 +145,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 100%;
-  min-width: 1000px;
+  // min-width: 1000px;
   overflow: hidden;
   .wheel__controller {
     position: fixed;
@@ -151,10 +155,13 @@ export default {
     top: 50%;
     transform: translate(-50%, calc(-50% - 51px));
     z-index: 3;
+
     // background-image: url("~@/assets/lucky-wheel/hand.svg");
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: contain;
+    background-color: transparent;
+    border: 0px;
     // overflow: visible;
     display: flex;
     align-items: flex-end;
@@ -353,6 +360,9 @@ export default {
           font-size: 32px;
           font-weight: bold;
           letter-spacing: -1.5px;
+          @media only screen and (max-width: 600px) {
+              font-size: 15px;
+          }
         }
         .icon {
           font-size: 44px;

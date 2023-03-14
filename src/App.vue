@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <!-- <Header /> -->
     <router-view />
   </div>
 </template>
@@ -30,7 +30,7 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    padding-top: 50px;
+    // padding-top: 50px;
 
 }
 .container {
