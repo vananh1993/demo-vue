@@ -13,7 +13,7 @@ export default {
             commit('getProductData');
         },
         loadProducts(context) {
-          axios.get("/data/products.json")
+          axios.get("./data/products.json")
           .then(res => {
             context.commit('getProductData', res.data);
           })

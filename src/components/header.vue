@@ -7,6 +7,7 @@
 
               <router-link to="/listProducts">List</router-link>
               <router-link to="/user">User</router-link>
+              <router-link to="/wheel">Wheel</router-link>
 
             </nav>
             <div class="col-sm-3">

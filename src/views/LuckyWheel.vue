@@ -101,8 +101,8 @@ export default {
     }
   },
   async created() {
-    const {data} = await axios.get('data/wheel.json');
-    const resultData = await axios.get('data/resultWhell.json').then(response => (this.resultText = response.data.result))
+    const {data} = await axios.get('./data/wheel.json');
+    const resultData = await axios.get('./data/resultWhell.json').then(response => (this.resultText = response.data.result))
     this.prizes = data;
     // this.resultText = resultData;
     // console.log(this.resultText);
@@ -167,6 +167,13 @@ export default {
     align-items: flex-end;
     padding: 10px;
     overflow: hidden;
+    &[disabled="disabled"] {
+        // opacity: 0.5;
+        .controller__label {
+            background: gray;
+            color: #727272;
+        }
+    }
     .controller__label {
       background-color: #1f1172;
       width: 100%;
